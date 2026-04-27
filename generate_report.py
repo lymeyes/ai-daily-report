@@ -220,17 +220,17 @@ def generate_html(stocks, news):
                 <tr>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#fff">{s["ticker"]}</span>
-                            <span style="font-size:11px;color:#5a6a8a">{s["name"]}</span>
-                            <span style="font-size:10px;color:#7b61ff;background:rgba(123,97,255,0.1);padding:1px 6px;border-radius:4px;width:fit-content">{s["sector"]}</span>
+                            <span style="font-size:14px;font-weight:700;color:#1a202c">{s["ticker"]}</span>
+                            <span style="font-size:11px;color:#4a5568">{s["name"]}</span>
+                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">{s["sector"]}</span>
                         </div>
                     </td>
-                    <td style="font-size:15px;font-weight:700;color:#fff">{s["price"]:.2f}</td>
+                    <td style="font-size:15px;font-weight:700;color:#1a202c">{s["price"]:.2f}</td>
                     <td style="font-size:13px;font-weight:600" class="{cls}">
                         <span style="font-size:11px">{arrow}</span> {sign}{s["change_pct"]:.2f}%
                     </td>
-                    <td style="font-size:12px;color:#5a6a8a">{w_sign}{s["week_change_pct"]:.1f}%</td>
-                    <td style="font-size:12px;color:#5a6a8a;text-align:right">{cap}</td>
+                    <td style="font-size:12px;color:#4a5568">{w_sign}{s["week_change_pct"]:.1f}%</td>
+                    <td style="font-size:12px;color:#4a5568;text-align:right">{cap}</td>
                 </tr>"""
         return rows
     
@@ -238,14 +238,14 @@ def generate_html(stocks, news):
         items = ""
         for n in news_list:
             items += f"""
-            <div style="background:#0b1120;border-radius:12px;padding:18px;border:1px solid #152030;border-left:3px solid #00d4ff;margin-bottom:14px">
+            <div style="background:#f8f9fa;border-radius:12px;padding:18px;border:1px solid #e2e8f0;border-left:3px solid #667eea;margin-bottom:14px">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
-                    <span style="background:rgba(0,212,255,0.1);color:#00d4ff;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:600">{n["tag"]}</span>
-                    <span style="font-size:11px;color:#4a5570">{n["source"]}</span>
+                    <span style="background:rgba(102,126,234,0.1);color:#667eea;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:600">{n["tag"]}</span>
+                    <span style="font-size:11px;color:#718096">{n["source"]}</span>
                 </div>
-                <a href="{n["url"]}" target="_blank" style="font-size:15px;font-weight:600;color:#e6edf3;text-decoration:none;display:block;margin-bottom:6px;line-height:1.4">{n["title"]}</a>
-                <div style="font-size:13px;color:#8b9bb4;line-height:1.6;margin-bottom:10px">{n["summary"]}</div>
-                <a href="{n["url"]}" target="_blank" style="font-size:11px;color:#7b61ff;text-decoration:none;display:inline-flex;align-items:center;gap:4px">阅读原文 ↗</a>
+                <a href="{n["url"]}" target="_blank" style="font-size:15px;font-weight:600;color:#1a202c;text-decoration:none;display:block;margin-bottom:6px;line-height:1.4">{n["title"]}</a>
+                <div style="font-size:13px;color:#4a5568;line-height:1.6;margin-bottom:10px">{n["summary"]}</div>
+                <a href="{n["url"]}" target="_blank" style="font-size:11px;color:#667eea;text-decoration:none;display:inline-flex;align-items:center;gap:4px">阅读原文 ↗</a>
             </div>"""
         return items
     
@@ -304,12 +304,12 @@ body{{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hir
     <div class="market-bar">
         <div class="market-stat">
             <div class="market-stat-label">AI核心标的涨跌</div>
-            <div class="market-stat-value" style="color:#00e5a0">{up_count}涨 {down_count}跌 {flat_count}平</div>
+            <div class="market-stat-value" style="color:#16a34a">{up_count}涨 {down_count}跌 {flat_count}平</div>
             <div class="market-stat-change up">覆盖{len(stocks)}只标的</div>
         </div>
         <div class="market-stat">
             <div class="market-stat-label">最大涨幅</div>
-            <div class="market-stat-value" style="color:#00e5a0">{top_gainer["ticker"] if top_gainer else "-"}</div>
+            <div class="market-stat-value" style="color:#16a34a">{top_gainer["ticker"] if top_gainer else "-"}</div>
             <div class="market-stat-change up">+{top_gainer["change_pct"]:.2f}%</div>
         </div>
         <div class="market-stat">
@@ -352,8 +352,8 @@ body{{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hir
     <div class="section">
         <div class="section-title"><div class="icon"></div>市场总结</div>
         <div class="summary-box">
-            <p>本报告由 GitHub Actions 自动生成，覆盖美股、港股、A股共 <strong style="color:#00e5a0">{len(stocks)}</strong> 只AI核心标的。数据来源为 Yahoo Finance，新闻来源为 RSS 聚合与 NewsAPI。</p>
-            <p style="margin-top:10px">今日最强标的为 <strong style="color:#00d4ff">{top_gainer["name"] if top_gainer else "-"} ({top_gainer["ticker"] if top_gainer else "-"})</strong>，涨幅 <strong style="color:#00e5a0">{top_gainer["change_pct"]:.2f}%</strong>。</p>
+            <p>本报告由 GitHub Actions 自动生成，覆盖美股、港股、A股共 <strong style="color:#16a34a">{len(stocks)}</strong> 只AI核心标的。数据来源为 Yahoo Finance，新闻来源为 RSS 聚合与 NewsAPI。</p>
+            <p style="margin-top:10px">今日最强标的为 <strong style="color:#1a202c">{top_gainer["name"] if top_gainer else "-"} ({top_gainer["ticker"] if top_gainer else "-"})</strong>，涨幅 <strong style="color:#16a34a">{top_gainer["change_pct"]:.2f}%</strong>。</p>
         </div>
     </div>
 
