@@ -257,34 +257,34 @@ def generate_html(stocks, news):
 <title>AI全球早报 - {date_str}</title>
 <style>
 *{{margin:0;padding:0;box-sizing:border-box}}
-body{{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#070b14;color:#c9d1d9;line-height:1.6}}
+body{{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#f7fafc;color:#2d3748;line-height:1.6}}
 .container{{max-width:960px;margin:0 auto;padding:20px}}
-.header{{background:linear-gradient(135deg,#0f1729 0%,#1a2342 100%);border-radius:16px;padding:32px;margin-bottom:24px;border:1px solid #1e2d4d;position:relative;overflow:hidden}}
-.header::before{{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(0,212,255,0.06) 0%,transparent 70%);border-radius:50%}}
-.header-badge{{display:inline-block;background:linear-gradient(90deg,#00d4ff,#7b61ff);color:#fff;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}}
-.header h1{{font-size:30px;font-weight:700;background:linear-gradient(90deg,#fff,#8fa8cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}}
-.header-date{{color:#5a6a8a;font-size:14px}}
-.header-date span{{color:#00d4ff;font-weight:500}}
-.section{{background:#0e1424;border-radius:16px;padding:24px;margin-bottom:20px;border:1px solid #1a2540}}
-.section-title{{font-size:17px;font-weight:600;color:#fff;margin-bottom:18px;display:flex;align-items:center;gap:10px}}
-.section-title .icon{{width:8px;height:8px;border-radius:50%;background:#00d4ff;box-shadow:0 0 8px rgba(0,212,255,0.5)}}
-.section-title .market-tag{{font-size:11px;font-weight:500;padding:2px 8px;border-radius:6px;background:#1a2540;color:#6b7a94;margin-left:auto}}
+.header{{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:16px;padding:32px;margin-bottom:24px;box-shadow:0 10px 25px rgba(102,126,234,0.15)}}
+.header::before{{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,0.1) 0%,transparent 70%);border-radius:50%}}
+.header-badge{{display:inline-block;background:rgba(255,255,255,0.2);color:#fff;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;backdrop-filter:blur(10px)}}
+.header h1{{font-size:30px;font-weight:700;color:#fff;margin-bottom:8px;text-shadow:0 2px 4px rgba(0,0,0,0.1)}}
+.header-date{{color:rgba(255,255,255,0.8);font-size:14px}}
+.header-date span{{color:#fff;font-weight:500}}
+.section{{background:#fff;border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,0.08)}}
+.section-title{{font-size:17px;font-weight:600;color:#2d3748;margin-bottom:18px;display:flex;align-items:center;gap:10px}}
+.section-title .icon{{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);box-shadow:0 0 8px rgba(102,126,234,0.3)}}
+.section-title .market-tag{{font-size:11px;font-weight:500;padding:2px 8px;border-radius:6px;background:#f7fafc;color:#718096;margin-left:auto;border:1px solid #e2e8f0}}
 .stock-table{{width:100%;border-collapse:collapse;font-size:13px}}
-.stock-table th{{text-align:left;padding:10px 12px;color:#5a6a8a;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #1a2540}}
-.stock-table td{{padding:14px 12px;border-bottom:1px solid #152030;vertical-align:middle}}
-.stock-table tr:hover td{{background:rgba(0,212,255,0.03)}}
+.stock-table th{{text-align:left;padding:10px 12px;color:#718096;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;border-bottom:2px solid #e2e8f0}}
+.stock-table td{{padding:14px 12px;border-bottom:1px solid #f0f4f8;vertical-align:middle}}
+.stock-table tr:hover td{{background:#f7fafc}}
 .stock-table tr:last-child td{{border-bottom:none}}
-.up{{color:#00e5a0}}
-.down{{color:#ff4757}}
-.flat{{color:#8b9bb4}}
+.up{{color:#38a169}}
+.down{{color:#e53e3e}}
+.flat{{color:#718096}}
 .market-bar{{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}}
-.market-stat{{background:#0e1424;border-radius:12px;padding:14px 18px;border:1px solid #1a2540;flex:1;min-width:140px}}
-.market-stat-label{{font-size:11px;color:#5a6a8a;margin-bottom:4px}}
-.market-stat-value{{font-size:18px;font-weight:700;color:#fff}}
+.market-stat{{background:#fff;border-radius:12px;padding:14px 18px;box-shadow:0 1px 3px rgba(0,0,0,0.08);flex:1;min-width:140px}}
+.market-stat-label{{font-size:11px;color:#718096;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px}}
+.market-stat-value{{font-size:18px;font-weight:700;color:#2d3748}}
 .market-stat-change{{font-size:12px;font-weight:600;margin-top:2px}}
-.summary-box{{background:linear-gradient(135deg,rgba(0,212,255,0.04) 0%,rgba(123,97,255,0.04) 100%);border-radius:12px;padding:18px;border:1px solid #1e2d4d}}
-.summary-box p{{font-size:14px;color:#9fb0cc;line-height:1.7}}
-.footer{{text-align:center;padding:24px;color:#3a4560;font-size:12px}}
+.summary-box{{background:linear-gradient(135deg,#f7fafc 0%,#edf2f7 100%);border-radius:12px;padding:18px;border:1px solid #e2e8f0}}
+.summary-box p{{font-size:14px;color:#4a5568;line-height:1.7}}
+.footer{{text-align:center;padding:24px;color:#718096;font-size:12px}}
 @media(max-width:600px){{
 .header h1{{font-size:22px}}
 .stock-table{{font-size:12px}}
