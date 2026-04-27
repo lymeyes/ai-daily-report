@@ -34,11 +34,19 @@ STOCKS = {
 
 # RSS 新闻源（无需 API Key）
 RSS_FEEDS = [
+    # 中文媒体
+    ("机器之心", "https://www.jiqizhixin.com/rss"),
+    ("量子位", "https://www.qbitai.com/feed"),
+    ("36氪", "https://36kr.com/feed"),
+    ("虎嗅", "https://www.huxiu.com/rss/0.xml"),
+    ("很客公园", "https://www.geekpark.net/rss"),
+    ("爱范儿", "https://www.ifanr.com/feed"),
+    ("雷科技", "https://www.leiPhone.com/feed"),
+    ("钛媒体", "http://www.tmtpost.com/rss.xml"),
+    # 英文媒体
     ("TechCrunch AI", "https://techcrunch.com/category/artificial-intelligence/feed/"),
     ("The Verge AI", "https://www.theverge.com/ai-artificial-intelligence/rss/index.xml"),
     ("MIT Technology Review", "https://www.technologyreview.com/feed/"),
-    ("机器之心", "https://www.jiqizhixin.com/rss"),
-    ("量子位", "https://www.qbitai.com/feed"),
 ]
 
 # 优先读环境变量， fallback 到本地配置文件
@@ -158,14 +166,17 @@ def get_news_from_rss():
                 # 判断标签
                 tag = "AI新闻"
                 lower_title = title.lower()
-                if any(k in lower_title for k in ["chip", "nvidia", "amd", "gpu", "半导体", "芯片"]):
+                # 中文 + 英文关键词
+                if any(k in title or k in lower_title for k in ["芯片", "半导体", "chip", "nvidia", "amd", "gpu", "英伟达", "英特尔", "高通"]):
                     tag = "芯片"
-                elif any(k in lower_title for k in ["funding", "invest", "融资", "投资", "亿美元"]):
+                elif any(k in title or k in lower_title for k in ["融资", "投资", "亿美元", "funding", "invest", "IPO", "上市", "估值"]):
                     tag = "融资"
-                elif any(k in lower_title for k in ["model", "gpt", "llm", "模型", "大模型"]):
+                elif any(k in title or k in lower_title for k in ["模型", "大模型", "model", "gpt", "llm", "GPT", "Claude", "Gemini", "DeepSeek"]):
                     tag = "模型"
-                elif any(k in lower_title for k in ["china", "chinese", "中国", "国产"]):
+                elif any(k in title or k in lower_title for k in ["中国", "国产", "华为", "腾讯", "阿里", "百度", "字节", "china", "chinese", "domestic"]):
                     tag = "中国AI"
+                elif any(k in title or k in lower_title for k in ["机器人", "具身", "robot", "人形"]):
+                    tag = "机器人"
                 
                 news.append({
                     "title": title,
