@@ -114,37 +114,60 @@ def get_stock_data():
 
 
 def get_news_from_api():
-    """通过 NewsAPI 获取新闻（如果有 API Key）"""
+    """通过 NewsAPI 获取新闻（中英文均抓取）"""
     if not NEWS_API_KEY:
         return []
     
+    all_articles = []
     try:
         url = "https://newsapi.org/v2/everything"
         yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-        params = {
-            "q": "artificial intelligence OR AI OR NVIDIA OR OpenAI OR 人工智能",
+        
+        # 英文新闻
+        params_en = {
+            "q": "artificial intelligence OR AI OR NVIDIA OR OpenAI OR LLM",
             "from": yesterday,
             "sortBy": "publishedAt",
             "language": "en",
-            "pageSize": 10,
+            "pageSize": 8,
             "apiKey": NEWS_API_KEY,
         }
-        resp = requests.get(url, params=params, timeout=30)
+        resp = requests.get(url, params=params_en, timeout=30)
         if resp.status_code == 200:
             articles = resp.json().get("articles", [])
-            return [
-                {
+            for a in articles:
+                all_articles.append({
                     "title": a["title"],
                     "summary": a.get("description", "") or "",
                     "url": a["url"],
                     "source": a["source"]["name"],
                     "tag": "AI新闻",
-                }
-                for a in articles[:6]
-            ]
+                })
+        
+        # 中文新闻（NewsAPI 支持 zh 语言参数）
+        params_zh = {
+            "q": "人工智能 OR AI OR 大模型 OR 芯片 OR NVIDIA",
+            "from": yesterday,
+            "sortBy": "publishedAt",
+            "language": "zh",
+            "pageSize": 8,
+            "apiKey": NEWS_API_KEY,
+        }
+        resp = requests.get(url, params=params_zh, timeout=30)
+        if resp.status_code == 200:
+            articles = resp.json().get("articles", [])
+            for a in articles:
+                all_articles.append({
+                    "title": a["title"],
+                    "summary": a.get("description", "") or "",
+                    "url": a["url"],
+                    "source": a["source"]["name"],
+                    "tag": "AI新闻",
+                })
     except Exception as e:
         print(f"[ERROR] NewsAPI: {e}")
-    return []
+    
+    return all_articles[:10]  # 最多返回10条
 
 
 def get_news_from_rss():
@@ -200,11 +223,17 @@ def get_news_from_rss():
 
 
 def get_news():
-    """获取新闻：优先API，备选RSS"""
+    """获取新闻：合并 API + RSS 结果"""
     api_news = get_news_from_api()
-    if api_news:
-        return api_news
-    return get_news_from_rss()
+    rss_news = get_news_from_rss()
+    # 合并去重
+    seen = set()
+    all_news = []
+    for n in api_news + rss_news:
+        if n["title"] not in seen and n["title"]:
+            seen.add(n["title"])
+            all_news.append(n)
+    return all_news[:12]  # 最多12条
 
 
 def format_market_cap(cap):
