@@ -41,7 +41,22 @@ RSS_FEEDS = [
     ("量子位", "https://www.qbitai.com/feed"),
 ]
 
+# 优先读环境变量， fallback 到本地配置文件
 NEWS_API_KEY = os.environ.get("NEWS_API_KEY", "")
+if not NEWS_API_KEY:
+    _config_paths = [
+        Path.home() / ".workbuddy" / "secrets" / "apis.json",
+        Path.home() / ".workbuddy" / "secrets" / "notion.json",
+    ]
+    for _p in _config_paths:
+        if _p.exists():
+            try:
+                _data = json.loads(_p.read_text(encoding="utf-8"))
+                if "newsapi_key" in _data:
+                    NEWS_API_KEY = _data["newsapi_key"]
+                    break
+            except Exception:
+                pass
 
 
 def get_stock_data():
