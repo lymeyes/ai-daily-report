@@ -5,6 +5,7 @@ import requests
 import yfinance as yf
 from datetime import datetime, timedelta
 from pathlib import Path
+import pytz
 
 # ============ 配置 ============
 STOCKS = {
@@ -121,11 +122,15 @@ def get_news_from_api():
     all_articles = []
     try:
         url = "https://newsapi.org/v2/everything"
-        yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+        # 使用北京时间
+        beijing_tz = pytz.timezone('Asia/Shanghai')
+        now_beijing = datetime.now(beijing_tz)
+        yesterday = (now_beijing - timedelta(days=1)).strftime("%Y-%m-%d")
         
-        # 英文新闻
+        # 英文新闻 - 优化搜索关键词，只在标题中搜索
         params_en = {
-            "q": "artificial intelligence OR AI OR NVIDIA OR OpenAI OR LLM",
+            "q": "AI OR artificial intelligence OR OpenAI OR ChatGPT OR LLM OR GPT OR Claude OR Gemini",
+            "searchIn": "title,description",
             "from": yesterday,
             "sortBy": "publishedAt",
             "language": "en",
@@ -146,7 +151,8 @@ def get_news_from_api():
         
         # 中文新闻（NewsAPI 支持 zh 语言参数）
         params_zh = {
-            "q": "人工智能 OR AI OR 大模型 OR 芯片 OR NVIDIA",
+            "q": "人工智能 OR AI OR 大模型 OR 深度学习 OR 机器学习",
+            "searchIn": "title,description",
             "from": yesterday,
             "sortBy": "publishedAt",
             "language": "zh",
@@ -248,7 +254,9 @@ def format_market_cap(cap):
 
 def generate_html(stocks, news):
     """生成HTML早报"""
-    now = datetime.now()
+    # 使用北京时间 (UTC+8)
+    beijing_tz = pytz.timezone('Asia/Shanghai')
+    now = datetime.now(beijing_tz)
     date_str = now.strftime("%Y年%m月%d日")
     weekday_str = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"][now.weekday()]
     
