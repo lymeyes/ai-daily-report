@@ -58,19 +58,20 @@ def is_relevant_news(title, summary=""):
 
 # RSS 新闻源（无需 API Key）
 RSS_FEEDS = [
-    # 中文媒体
+    # 高质量中文 AI/科技媒体
     ("机器之心", "https://www.jiqizhixin.com/rss"),
     ("量子位", "https://www.qbitai.com/feed"),
     ("36氪", "https://36kr.com/feed"),
     ("虎嗅", "https://www.huxiu.com/rss/0.xml"),
-    ("很客公园", "https://www.geekpark.net/rss"),
-    ("爱范儿", "https://www.ifanr.com/feed"),
-    ("雷科技", "https://www.leiPhone.com/feed"),
-    ("钛媒体", "http://www.tmtpost.com/rss.xml"),
-    # 英文媒体
-    ("TechCrunch AI", "https://techcrunch.com/category/artificial-intelligence/feed/"),
-    ("The Verge AI", "https://www.theverge.com/ai-artificial-intelligence/rss/index.xml"),
-    ("MIT Technology Review", "https://www.technologyreview.com/feed/"),
+    ("极客公园", "https://www.geekpark.net/rss"),
+    ("雷科技", "https://www.leiphone.com/feed"),
+    ("新智元", "https://www.aiweibang.com/feed"),
+    ("InfoQ中文", "https://www.infoq.cn/feed"),
+    ("开源中国", "https://www.oschina.net/blog/rss"),
+    ("CSDN AI", "https://blog.csdn.net/nav/ai/rss"),
+    ("半导体行业观察", "https://www.semiinsights.com/feed"),
+    ("AIbase", "https://www.aibase.com/feed"),
+    ("知晓程序", "https://www.ifanr.com/category/xiao_cheng_xu/feed"),
 ]
 
 # 优先读环境变量， fallback 到本地配置文件
@@ -138,7 +139,7 @@ def get_stock_data():
 
 
 def get_news_from_api():
-    """通过 NewsAPI 获取新闻（中英文均抓取）"""
+    """通过 NewsAPI 获取中文 AI 新闻"""
     if not NEWS_API_KEY:
         return []
     
@@ -150,41 +151,14 @@ def get_news_from_api():
         now_beijing = datetime.now(beijing_tz)
         yesterday = (now_beijing - timedelta(days=1)).strftime("%Y-%m-%d")
         
-        # 英文新闻 - 优化搜索关键词，只在标题中搜索
-        params_en = {
-            "q": "AI OR artificial intelligence OR OpenAI OR ChatGPT OR LLM OR GPT OR Claude OR Gemini",
-            "searchIn": "title,description",
-            "from": yesterday,
-            "sortBy": "publishedAt",
-            "language": "en",
-            "pageSize": 8,
-            "apiKey": NEWS_API_KEY,
-        }
-        resp = requests.get(url, params=params_en, timeout=30)
-        if resp.status_code == 200:
-            articles = resp.json().get("articles", [])
-            for a in articles:
-                title = a["title"]
-                summary = a.get("description", "") or ""
-                # 过滤不相关新闻
-                if not is_relevant_news(title, summary):
-                    continue
-                all_articles.append({
-                    "title": title,
-                    "summary": summary,
-                    "url": a["url"],
-                    "source": a["source"]["name"],
-                    "tag": "AI新闻",
-                })
-        
-        # 中文新闻（NewsAPI 支持 zh 语言参数）
+        # 只抓取中文新闻
         params_zh = {
-            "q": "人工智能 OR AI OR 大模型 OR 深度学习 OR 机器学习",
+            "q": "人工智能 OR AI OR 大模型 OR 深度学习 OR 机器学习 OR ChatGPT OR 大模型 OR GPT",
             "searchIn": "title,description",
             "from": yesterday,
             "sortBy": "publishedAt",
             "language": "zh",
-            "pageSize": 8,
+            "pageSize": 10,
             "apiKey": NEWS_API_KEY,
         }
         resp = requests.get(url, params=params_zh, timeout=30)
@@ -202,10 +176,13 @@ def get_news_from_api():
                     "source": a["source"]["name"],
                     "tag": "AI新闻",
                 })
+        else:
+            print(f"[WARN] NewsAPI 返回状态码: {resp.status_code}")
     except Exception as e:
         print(f"[ERROR] NewsAPI: {e}")
     
-    return all_articles[:10]  # 最多返回10条
+    return all_articles[:8]  # 最多返回8条
+
 
 
 def get_news_from_rss():
