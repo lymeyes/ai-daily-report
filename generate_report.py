@@ -327,8 +327,8 @@ def generate_html(stocks, news):
                     <td style="font-size:13px;font-weight:600" class="{cls}">
                         <span style="font-size:11px">{arrow}</span> {sign}{s["change_pct"]:.2f}%
                     </td>
-                    <td style="font-size:12px;color:#4a5568">{w_sign}{s["week_change_pct"]:.1f}%</td>
-                    <td style="font-size:12px;color:#4a5568;text-align:right">{cap}</td>
+                    <td style="font-size:13px;color:#b8c1ec;font-weight:600">{w_sign}{s["week_change_pct"]:.1f}%</td>
+                    <td style="font-size:13px;color:#8892b0;text-align:right;font-weight:600">{cap}</td>
                 </tr>"""
         return rows
     
@@ -520,7 +520,7 @@ body{{
   letter-spacing:0.5px;
   margin-bottom:10px;
 }}
-.news-source{{font-size:11px;color:#6b7bff;margin-bottom:8px;font-weight:600}}
+.news-source{{font-size:11px;color:#8892ff;margin-bottom:8px;font-weight:600}}
 .news-title{{
   font-size:16px;
   font-weight:700;
@@ -531,7 +531,7 @@ body{{
   line-height:1.5;
 }}
 .news-title:hover{{color:#a8b4ff}}
-.news-summary{{font-size:14px;color:#8892b0;line-height:1.7;margin-bottom:12px}}
+.news-summary{{font-size:14px;color:#a8b4ff;line-height:1.7;margin-bottom:12px}}
 .news-link{{
   font-size:12px;
   color:#667eea;
@@ -549,7 +549,7 @@ body{{
   padding:22px;
   border:1px solid rgba(102,126,234,0.2);
 }}
-.summary-box p{{font-size:15px;color:#b8c1ec;line-height:1.8}}
+.summary-box p{{font-size:15px;color:#e2e8f0;line-height:1.8;font-weight:500}}
 .footer{{
   text-align:center;
   padding:28px;
