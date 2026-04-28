@@ -58,20 +58,15 @@ def is_relevant_news(title, summary=""):
 
 # RSS 新闻源（无需 API Key）
 RSS_FEEDS = [
-    # 高质量中文 AI/科技媒体
-    ("机器之心", "https://www.jiqizhixin.com/rss"),
+    # 高质量中文 AI/科技媒体（已验证可用）
     ("量子位", "https://www.qbitai.com/feed"),
     ("36氪", "https://36kr.com/feed"),
+    ("雷科技", "https://www.leiphone.com/feed"),
+    ("InfoQ中文", "https://www.infoq.cn/feed"),
+    # 候选源（偶发超时，保留）
     ("虎嗅", "https://www.huxiu.com/rss/0.xml"),
     ("极客公园", "https://www.geekpark.net/rss"),
-    ("雷科技", "https://www.leiphone.com/feed"),
-    ("新智元", "https://www.aiweibang.com/feed"),
-    ("InfoQ中文", "https://www.infoq.cn/feed"),
-    ("开源中国", "https://www.oschina.net/blog/rss"),
-    ("CSDN AI", "https://blog.csdn.net/nav/ai/rss"),
-    ("半导体行业观察", "https://www.semiinsights.com/feed"),
-    ("AIbase", "https://www.aibase.com/feed"),
-    ("知晓程序", "https://www.ifanr.com/category/xiao_cheng_xu/feed"),
+    ("机器之心", "https://www.jiqizhixin.com/rss"),
 ]
 
 # 优先读环境变量， fallback 到本地配置文件
@@ -143,6 +138,7 @@ def get_news_from_api():
     if not NEWS_API_KEY:
         return []
     
+    return []  # NewsAPI 超时较多，暂禁用
     all_articles = []
     try:
         url = "https://newsapi.org/v2/everything"
