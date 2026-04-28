@@ -3,42 +3,219 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI全球早报 - 2026年04月27日</title>
+<title>AI全球早报 - 2026年04月28日</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#f7fafc;color:#2d3748;line-height:1.6}
-.container{max-width:960px;margin:0 auto;padding:20px}
-.header{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:16px;padding:32px;margin-bottom:24px;box-shadow:0 10px 25px rgba(102,126,234,0.15)}
-.header::before{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,0.1) 0%,transparent 70%);border-radius:50%}
-.header-badge{display:inline-block;background:rgba(255,255,255,0.2);color:#fff;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;backdrop-filter:blur(10px)}
-.header h1{font-size:30px;font-weight:700;color:#fff;margin-bottom:8px;text-shadow:0 2px 4px rgba(0,0,0,0.1)}
-.header-date{color:rgba(255,255,255,0.8);font-size:14px}
-.header-date span{color:#fff;font-weight:500}
-.section{background:#fff;border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,0.08)}
-.section-title{font-size:17px;font-weight:600;color:#2d3748;margin-bottom:18px;display:flex;align-items:center;gap:10px}
-.section-title .icon{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);box-shadow:0 0 8px rgba(102,126,234,0.3)}
-.section-title .market-tag{font-size:11px;font-weight:500;padding:2px 8px;border-radius:6px;background:#f7fafc;color:#718096;margin-left:auto;border:1px solid #e2e8f0}
-.stock-table{width:100%;border-collapse:collapse;font-size:13px}
-.stock-table th{text-align:left;padding:10px 12px;color:#718096;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;border-bottom:2px solid #e2e8f0}
-.stock-table td{padding:14px 12px;border-bottom:1px solid #f0f4f8;vertical-align:middle}
-.stock-table tr:hover td{background:#f7fafc}
+body{
+  font-family:'SF Pro Display','PingFang SC','Hiragino Sans GB','Microsoft YaHei',-apple-system,sans-serif;
+  background: linear-gradient(135deg,#0f0f23 0%,#1a1a2e 50%,#16213e 100%);
+  color:#e2e8f0;
+  line-height:1.6;
+  min-height:100vh;
+  font-size:15px;
+}
+.container{max-width:960px;margin:0 auto;padding:24px}
+.header{
+  background: linear-gradient(135deg,#667eea 0%,#764ba2 50%,#f093fb 100%);
+  border-radius:20px;
+  padding:40px 36px;
+  margin-bottom:28px;
+  box-shadow:0 20px 60px rgba(102,126,234,0.3);
+  position:relative;
+  overflow:hidden;
+}
+.header::before{
+  content:'';
+  position:absolute;
+  top:-60%;
+  right:-10%;
+  width:500px;
+  height:500px;
+  background:radial-gradient(circle,rgba(255,255,255,0.12) 0%,transparent 70%);
+  border-radius:50%;
+  animation: float 8s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0px)}
+  50%{transform:translateY(-20px)}
+}
+.header-badge{
+  display:inline-block;
+  background:rgba(255,255,255,0.18);
+  color:#fff;
+  padding:6px 16px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  margin-bottom:14px;
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.15);
+}
+.header h1{
+  font-size:38px;
+  font-weight:800;
+  color:#fff;
+  margin-bottom:10px;
+  text-shadow:0 4px 12px rgba(0,0,0,0.2);
+  letter-spacing:-0.5px;
+}
+.header-date{color:rgba(255,255,255,0.85);font-size:15px;font-weight:500}
+.header-date span{color:#fff;font-weight:700}
+.section{
+  background:rgba(26,32,53,0.7);
+  backdrop-filter:blur(20px);
+  border-radius:18px;
+  padding:28px;
+  margin-bottom:22px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.3);
+  border:1px solid rgba(102,126,234,0.15);
+}
+.section-title{
+  font-size:18px;
+  font-weight:700;
+  color:#e2e8f0;
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.section-title .icon{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#667eea,#f093fb);
+  box-shadow:0 0 12px rgba(102,126,234,0.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 12px rgba(102,126,234,0.5)}
+  50%{box-shadow:0 0 20px rgba(240,147,251,0.7)}
+}
+.section-title .market-tag{
+  font-size:11px;
+  font-weight:600;
+  padding:4px 10px;
+  border-radius:8px;
+  background:rgba(102,126,234,0.15);
+  color:#a8b4ff;
+  margin-left:auto;
+  border:1px solid rgba(102,126,234,0.25);
+}
+.stock-table{width:100%;border-collapse:collapse;font-size:14px}
+.stock-table th{
+  text-align:left;
+  padding:12px 14px;
+  color:#a8b4ff;
+  font-weight:700;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  border-bottom:2px solid rgba(102,126,234,0.3);
+}
+.stock-table td{
+  padding:16px 14px;
+  border-bottom:1px solid rgba(102,126,234,0.1);
+  vertical-align:middle;
+  font-size:14px;
+}
+.stock-table tr:hover td{background:rgba(102,126,234,0.08)}
 .stock-table tr:last-child td{border-bottom:none}
-.up{color:#38a169}
-.down{color:#e53e3e}
-.flat{color:#718096}
-.market-bar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
-.market-stat{background:#fff;border-radius:12px;padding:14px 18px;box-shadow:0 1px 3px rgba(0,0,0,0.08);flex:1;min-width:140px}
-.market-stat-label{font-size:11px;color:#718096;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px}
-.market-stat-value{font-size:18px;font-weight:700;color:#2d3748}
-.market-stat-change{font-size:12px;font-weight:600;margin-top:2px}
-.summary-box{background:linear-gradient(135deg,#f7fafc 0%,#edf2f7 100%);border-radius:12px;padding:18px;border:1px solid #e2e8f0}
-.summary-box p{font-size:14px;color:#4a5568;line-height:1.7}
-.footer{text-align:center;padding:24px;color:#718096;font-size:12px}
+.up{color:#00ff88;font-weight:700;text-shadow:0 0 8px rgba(0,255,136,0.3)}
+.down{color:#ff4757;font-weight:700;text-shadow:0 0 8px rgba(255,71,87,0.3)}
+.flat{color:#a8b4ff}
+.market-bar{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.market-stat{
+  background:rgba(26,32,53,0.8);
+  backdrop-filter:blur(20px);
+  border-radius:14px;
+  padding:18px 22px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.3);
+  flex:1;
+  min-width:150px;
+  border:1px solid rgba(102,126,234,0.15);
+}
+.market-stat-label{
+  font-size:11px;
+  color:#a8b4ff;
+  margin-bottom:6px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-weight:600;
+}
+.market-stat-value{font-size:22px;font-weight:800;color:#e2e8f0}
+.market-stat-change{font-size:13px;font-weight:700;margin-top:4px}
+.news-card{
+  background:rgba(26,32,53,0.6);
+  backdrop-filter:blur(20px);
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:16px;
+  border:1px solid rgba(102,126,234,0.15);
+  border-left:4px solid #667eea;
+  transition: all 0.3s ease;
+}
+.news-card:hover{
+  border-left-color:#f093fb;
+  background:rgba(102,126,234,0.1);
+  transform:translateX(4px);
+  box-shadow:0 8px 32px rgba(102,126,234,0.2);
+}
+.news-tag{
+  display:inline-block;
+  background:rgba(102,126,234,0.2);
+  color:#a8b4ff;
+  padding:3px 12px;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.5px;
+  margin-bottom:10px;
+}
+.news-source{font-size:11px;color:#6b7bff;margin-bottom:8px;font-weight:600}
+.news-title{
+  font-size:16px;
+  font-weight:700;
+  color:#e2e8f0;
+  text-decoration:none;
+  display:block;
+  margin-bottom:8px;
+  line-height:1.5;
+}
+.news-title:hover{color:#a8b4ff}
+.news-summary{font-size:14px;color:#8892b0;line-height:1.7;margin-bottom:12px}
+.news-link{
+  font-size:12px;
+  color:#667eea;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-weight:600;
+  transition: all 0.2s;
+}
+.news-link:hover{color:#f093fb;gap:10px}
+.summary-box{
+  background:linear-gradient(135deg,rgba(102,126,234,0.1) 0%,rgba(240,147,251,0.1) 100%);
+  border-radius:14px;
+  padding:22px;
+  border:1px solid rgba(102,126,234,0.2);
+}
+.summary-box p{font-size:15px;color:#b8c1ec;line-height:1.8}
+.footer{
+  text-align:center;
+  padding:28px;
+  color:#6b7bff;
+  font-size:12px;
+  letter-spacing:1px;
+}
 @media(max-width:600px){
-.header h1{font-size:22px}
-.stock-table{font-size:12px}
-.stock-table th:nth-child(4),.stock-table td:nth-child(4){display:none}
-.market-bar{flex-direction:column}
+  .header h1{font-size:26px}
+  .stock-table{font-size:13px}
+  .stock-table th:nth-child(4),.stock-table td:nth-child(4){display:none}
+  .market-bar{flex-direction:column}
+  .news-title{font-size:15px}
 }
 </style>
 </head>
@@ -47,23 +224,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hira
     <div class="header">
         <div class="header-badge">AI 全球早报 · GitHub自动版</div>
         <h1>AI 全球早报</h1>
-        <div class="header-date">2026年04月27日 <span>周一</span> | 美股 · 港股 · A股 · 全球AI动态</div>
+        <div class="header-date">2026年04月28日 <span>周二</span> | 美股 · 港股 · A股 · 全球AI动态</div>
     </div>
 
     <div class="market-bar">
         <div class="market-stat">
             <div class="market-stat-label">AI核心标的涨跌</div>
-            <div class="market-stat-value" style="color:#16a34a">15涨 4跌 0平</div>
+            <div class="market-stat-value" style="color:#16a34a">9涨 10跌 0平</div>
             <div class="market-stat-change up">覆盖19只标的</div>
         </div>
         <div class="market-stat">
             <div class="market-stat-label">最大涨幅</div>
-            <div class="market-stat-value" style="color:#16a34a">AMD</div>
-            <div class="market-stat-change up">+13.91%</div>
+            <div class="market-stat-value" style="color:#16a34a">NVDA</div>
+            <div class="market-stat-change up">+4.00%</div>
         </div>
         <div class="market-stat">
             <div class="market-stat-label">生成时间</div>
-            <div class="market-stat-value">13:24</div>
+            <div class="market-stat-value">10:31</div>
             <div class="market-stat-change flat">北京时间</div>
         </div>
     </div>
@@ -74,137 +251,137 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hira
                 <tr>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">AMD</span>
-                            <span style="font-size:11px;color:#4a5568">AMD</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">芯片</span>
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">NVDA</span>
+                            <span style="font-size:12px;color:#a8b4ff">NVIDIA</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">芯片</span>
                         </div>
                     </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">347.81</td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">216.61</td>
                     <td style="font-size:13px;font-weight:600" class="up">
-                        <span style="font-size:11px">▲</span> +13.91%
+                        <span style="font-size:11px">▲</span> +4.00%
                     </td>
-                    <td style="font-size:12px;color:#4a5568">+26.5%</td>
-                    <td style="font-size:12px;color:#4a5568;text-align:right">$567B</td>
+                    <td style="font-size:12px;color:#4a5568">+8.4%</td>
+                    <td style="font-size:12px;color:#4a5568;text-align:right">$5.3T</td>
                 </tr>
                 <tr>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">NVDA</span>
-                            <span style="font-size:11px;color:#4a5568">NVIDIA</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">芯片</span>
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">GOOGL</span>
+                            <span style="font-size:12px;color:#a8b4ff">Alphabet</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">互联网</span>
                         </div>
                     </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">208.27</td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">350.34</td>
                     <td style="font-size:13px;font-weight:600" class="up">
-                        <span style="font-size:11px">▲</span> +4.32%
+                        <span style="font-size:11px">▲</span> +1.72%
                     </td>
-                    <td style="font-size:12px;color:#4a5568">+3.1%</td>
-                    <td style="font-size:12px;color:#4a5568;text-align:right">$5.1T</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">AMZN</span>
-                            <span style="font-size:11px;color:#4a5568">Amazon</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">互联网</span>
-                        </div>
-                    </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">263.99</td>
-                    <td style="font-size:13px;font-weight:600" class="up">
-                        <span style="font-size:11px">▲</span> +3.49%
-                    </td>
-                    <td style="font-size:12px;color:#4a5568">+6.3%</td>
-                    <td style="font-size:12px;color:#4a5568;text-align:right">$2.8T</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">BABA</span>
-                            <span style="font-size:11px;color:#4a5568">阿里巴巴</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">互联网</span>
-                        </div>
-                    </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">135.82</td>
-                    <td style="font-size:13px;font-weight:600" class="up">
-                        <span style="font-size:11px">▲</span> +3.13%
-                    </td>
-                    <td style="font-size:12px;color:#4a5568">-3.1%</td>
-                    <td style="font-size:12px;color:#4a5568;text-align:right">$335B</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">META</span>
-                            <span style="font-size:11px;color:#4a5568">Meta</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">互联网</span>
-                        </div>
-                    </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">675.03</td>
-                    <td style="font-size:13px;font-weight:600" class="up">
-                        <span style="font-size:11px">▲</span> +2.41%
-                    </td>
-                    <td style="font-size:12px;color:#4a5568">+0.6%</td>
-                    <td style="font-size:12px;color:#4a5568;text-align:right">$1.7T</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">MSFT</span>
-                            <span style="font-size:11px;color:#4a5568">Microsoft</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">软件</span>
-                        </div>
-                    </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">424.62</td>
-                    <td style="font-size:13px;font-weight:600" class="up">
-                        <span style="font-size:11px">▲</span> +2.13%
-                    </td>
-                    <td style="font-size:12px;color:#4a5568">+1.6%</td>
-                    <td style="font-size:12px;color:#4a5568;text-align:right">$3.2T</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">GOOGL</span>
-                            <span style="font-size:11px;color:#4a5568">Alphabet</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">互联网</span>
-                        </div>
-                    </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">344.40</td>
-                    <td style="font-size:13px;font-weight:600" class="up">
-                        <span style="font-size:11px">▲</span> +1.63%
-                    </td>
-                    <td style="font-size:12px;color:#4a5568">+2.1%</td>
+                    <td style="font-size:12px;color:#4a5568">+5.4%</td>
                     <td style="font-size:12px;color:#4a5568;text-align:right">$4.2T</td>
                 </tr>
                 <tr>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">PLTR</span>
-                            <span style="font-size:11px;color:#4a5568">Palantir</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">AI/数据</span>
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">TSLA</span>
+                            <span style="font-size:12px;color:#a8b4ff">Tesla</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">AI/汽车</span>
                         </div>
                     </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">143.09</td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">378.67</td>
                     <td style="font-size:13px;font-weight:600" class="up">
-                        <span style="font-size:11px">▲</span> +1.07%
+                        <span style="font-size:11px">▲</span> +0.63%
                     </td>
-                    <td style="font-size:12px;color:#4a5568">-1.9%</td>
-                    <td style="font-size:12px;color:#4a5568;text-align:right">$342B</td>
+                    <td style="font-size:12px;color:#4a5568">-2.0%</td>
+                    <td style="font-size:12px;color:#4a5568;text-align:right">$1.4T</td>
                 </tr>
                 <tr>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">TSLA</span>
-                            <span style="font-size:11px;color:#4a5568">Tesla</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">AI/汽车</span>
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">META</span>
+                            <span style="font-size:12px;color:#a8b4ff">Meta</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">互联网</span>
                         </div>
                     </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">376.30</td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">678.62</td>
                     <td style="font-size:13px;font-weight:600" class="up">
-                        <span style="font-size:11px">▲</span> +0.69%
+                        <span style="font-size:11px">▲</span> +0.53%
                     </td>
-                    <td style="font-size:12px;color:#4a5568">-4.1%</td>
-                    <td style="font-size:12px;color:#4a5568;text-align:right">$1.4T</td>
+                    <td style="font-size:12px;color:#4a5568">+1.5%</td>
+                    <td style="font-size:12px;color:#4a5568;text-align:right">$1.7T</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display:flex;flex-direction:column;gap:2px">
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">MSFT</span>
+                            <span style="font-size:12px;color:#a8b4ff">Microsoft</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">软件</span>
+                        </div>
+                    </td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">424.82</td>
+                    <td style="font-size:13px;font-weight:600" class="up">
+                        <span style="font-size:11px">▲</span> +0.05%
+                    </td>
+                    <td style="font-size:12px;color:#4a5568">+0.2%</td>
+                    <td style="font-size:12px;color:#4a5568;text-align:right">$3.2T</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display:flex;flex-direction:column;gap:2px">
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">PLTR</span>
+                            <span style="font-size:12px;color:#a8b4ff">Palantir</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">AI/数据</span>
+                        </div>
+                    </td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">143.10</td>
+                    <td style="font-size:13px;font-weight:600" class="up">
+                        <span style="font-size:11px">▲</span> +0.01%
+                    </td>
+                    <td style="font-size:12px;color:#4a5568">-2.0%</td>
+                    <td style="font-size:12px;color:#4a5568;text-align:right">$343B</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display:flex;flex-direction:column;gap:2px">
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">AMZN</span>
+                            <span style="font-size:12px;color:#a8b4ff">Amazon</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">互联网</span>
+                        </div>
+                    </td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">261.12</td>
+                    <td style="font-size:13px;font-weight:600" class="down">
+                        <span style="font-size:11px">▼</span> -1.09%
+                    </td>
+                    <td style="font-size:12px;color:#4a5568">+4.5%</td>
+                    <td style="font-size:12px;color:#4a5568;text-align:right">$2.8T</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display:flex;flex-direction:column;gap:2px">
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">BABA</span>
+                            <span style="font-size:12px;color:#a8b4ff">阿里巴巴</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">互联网</span>
+                        </div>
+                    </td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">132.52</td>
+                    <td style="font-size:13px;font-weight:600" class="down">
+                        <span style="font-size:11px">▼</span> -2.43%
+                    </td>
+                    <td style="font-size:12px;color:#4a5568">-2.1%</td>
+                    <td style="font-size:12px;color:#4a5568;text-align:right">$327B</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display:flex;flex-direction:column;gap:2px">
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">AMD</span>
+                            <span style="font-size:12px;color:#a8b4ff">AMD</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">芯片</span>
+                        </div>
+                    </td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">334.63</td>
+                    <td style="font-size:13px;font-weight:600" class="down">
+                        <span style="font-size:11px">▼</span> -3.79%
+                    </td>
+                    <td style="font-size:12px;color:#4a5568">+17.6%</td>
+                    <td style="font-size:12px;color:#4a5568;text-align:right">$546B</td>
                 </tr></tbody></table>
     </div>
     <div class="section">
@@ -213,77 +390,77 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hira
                 <tr>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">2018.HK</span>
-                            <span style="font-size:11px;color:#4a5568">瑞声科技</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">硬件</span>
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">0700.HK</span>
+                            <span style="font-size:12px;color:#a8b4ff">腾讯控股</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">互联网</span>
                         </div>
                     </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">39.40</td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">479.20</td>
                     <td style="font-size:13px;font-weight:600" class="up">
-                        <span style="font-size:11px">▲</span> +1.49%
+                        <span style="font-size:11px">▲</span> +0.13%
                     </td>
-                    <td style="font-size:12px;color:#4a5568">+2.7%</td>
-                    <td style="font-size:12px;color:#4a5568;text-align:right">$45B</td>
+                    <td style="font-size:12px;color:#4a5568">-4.9%</td>
+                    <td style="font-size:12px;color:#4a5568;text-align:right">$4.3T</td>
                 </tr>
                 <tr>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">9988.HK</span>
-                            <span style="font-size:11px;color:#4a5568">阿里巴巴-SW</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">互联网</span>
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">9988.HK</span>
+                            <span style="font-size:12px;color:#a8b4ff">阿里巴巴-SW</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">互联网</span>
                         </div>
                     </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">131.60</td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">129.70</td>
                     <td style="font-size:13px;font-weight:600" class="down">
-                        <span style="font-size:11px">▼</span> -0.15%
+                        <span style="font-size:11px">▼</span> -0.38%
                     </td>
-                    <td style="font-size:12px;color:#4a5568">-3.5%</td>
+                    <td style="font-size:12px;color:#4a5568">-1.4%</td>
                     <td style="font-size:12px;color:#4a5568;text-align:right">$2.5T</td>
                 </tr>
                 <tr>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">1810.HK</span>
-                            <span style="font-size:11px;color:#4a5568">小米集团</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">消费电子</span>
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">0020.HK</span>
+                            <span style="font-size:12px;color:#a8b4ff">商汤-W</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">AI</span>
                         </div>
                     </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">31.12</td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">1.99</td>
                     <td style="font-size:13px;font-weight:600" class="down">
-                        <span style="font-size:11px">▼</span> -0.26%
+                        <span style="font-size:11px">▼</span> -1.49%
                     </td>
-                    <td style="font-size:12px;color:#4a5568">-4.0%</td>
-                    <td style="font-size:12px;color:#4a5568;text-align:right">$804B</td>
+                    <td style="font-size:12px;color:#4a5568">-1.0%</td>
+                    <td style="font-size:12px;color:#4a5568;text-align:right">$81B</td>
                 </tr>
                 <tr>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">0020.HK</span>
-                            <span style="font-size:11px;color:#4a5568">商汤-W</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">AI</span>
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">1810.HK</span>
+                            <span style="font-size:12px;color:#a8b4ff">小米集团</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">消费电子</span>
                         </div>
                     </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">2.02</td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">30.56</td>
                     <td style="font-size:13px;font-weight:600" class="down">
-                        <span style="font-size:11px">▼</span> -0.49%
+                        <span style="font-size:11px">▼</span> -1.74%
                     </td>
-                    <td style="font-size:12px;color:#4a5568">+0.5%</td>
-                    <td style="font-size:12px;color:#4a5568;text-align:right">$82B</td>
+                    <td style="font-size:12px;color:#4a5568">-3.9%</td>
+                    <td style="font-size:12px;color:#4a5568;text-align:right">$790B</td>
                 </tr>
                 <tr>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">0700.HK</span>
-                            <span style="font-size:11px;color:#4a5568">腾讯控股</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">互联网</span>
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">2018.HK</span>
+                            <span style="font-size:12px;color:#a8b4ff">瑞声科技</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">硬件</span>
                         </div>
                     </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">480.60</td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">37.94</td>
                     <td style="font-size:13px;font-weight:600" class="down">
-                        <span style="font-size:11px">▼</span> -2.59%
+                        <span style="font-size:11px">▼</span> -4.19%
                     </td>
-                    <td style="font-size:12px;color:#4a5568">-7.4%</td>
-                    <td style="font-size:12px;color:#4a5568;text-align:right">$4.3T</td>
+                    <td style="font-size:12px;color:#4a5568">-2.3%</td>
+                    <td style="font-size:12px;color:#4a5568;text-align:right">$43B</td>
                 </tr></tbody></table>
     </div>
     <div class="section">
@@ -292,191 +469,166 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hira
                 <tr>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">688981.SS</span>
-                            <span style="font-size:11px;color:#4a5568">中芯国际</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">芯片</span>
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">688256.SS</span>
+                            <span style="font-size:12px;color:#a8b4ff">寒武纪</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">AI芯片</span>
                         </div>
                     </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">116.09</td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">1399.01</td>
                     <td style="font-size:13px;font-weight:600" class="up">
-                        <span style="font-size:11px">▲</span> +4.62%
+                        <span style="font-size:11px">▲</span> +3.12%
                     </td>
-                    <td style="font-size:12px;color:#4a5568">+8.0%</td>
-                    <td style="font-size:12px;color:#4a5568;text-align:right">$930B</td>
+                    <td style="font-size:12px;color:#4a5568">+4.6%</td>
+                    <td style="font-size:12px;color:#4a5568;text-align:right">$590B</td>
                 </tr>
                 <tr>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">688041.SS</span>
-                            <span style="font-size:11px;color:#4a5568">海光信息</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">芯片</span>
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">688981.SS</span>
+                            <span style="font-size:12px;color:#a8b4ff">中芯国际</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">芯片</span>
                         </div>
                     </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">295.00</td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">116.80</td>
                     <td style="font-size:13px;font-weight:600" class="up">
-                        <span style="font-size:11px">▲</span> +3.51%
+                        <span style="font-size:11px">▲</span> +0.19%
                     </td>
-                    <td style="font-size:12px;color:#4a5568">+16.8%</td>
+                    <td style="font-size:12px;color:#4a5568">+8.3%</td>
+                    <td style="font-size:12px;color:#4a5568;text-align:right">$936B</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display:flex;flex-direction:column;gap:2px">
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">688041.SS</span>
+                            <span style="font-size:12px;color:#a8b4ff">海光信息</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">芯片</span>
+                        </div>
+                    </td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">295.35</td>
+                    <td style="font-size:13px;font-weight:600" class="down">
+                        <span style="font-size:11px">▼</span> -0.31%
+                    </td>
+                    <td style="font-size:12px;color:#4a5568">+13.9%</td>
                     <td style="font-size:12px;color:#4a5568;text-align:right">$686B</td>
                 </tr>
                 <tr>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">002230.SZ</span>
-                            <span style="font-size:11px;color:#4a5568">科大讯飞</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">AI语音</span>
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">002230.SZ</span>
+                            <span style="font-size:12px;color:#a8b4ff">科大讯飞</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">AI语音</span>
                         </div>
                     </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">49.69</td>
-                    <td style="font-size:13px;font-weight:600" class="up">
-                        <span style="font-size:11px">▲</span> +1.26%
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">49.39</td>
+                    <td style="font-size:13px;font-weight:600" class="down">
+                        <span style="font-size:11px">▼</span> -0.84%
                     </td>
-                    <td style="font-size:12px;color:#4a5568">+1.9%</td>
+                    <td style="font-size:12px;color:#4a5568">-0.2%</td>
                     <td style="font-size:12px;color:#4a5568;text-align:right">$119B</td>
                 </tr>
                 <tr>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">603019.SS</span>
-                            <span style="font-size:11px;color:#4a5568">中科曙光</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">算力</span>
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">603019.SS</span>
+                            <span style="font-size:12px;color:#a8b4ff">中科曙光</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">算力</span>
                         </div>
                     </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">93.59</td>
-                    <td style="font-size:13px;font-weight:600" class="up">
-                        <span style="font-size:11px">▲</span> +0.89%
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">92.61</td>
+                    <td style="font-size:13px;font-weight:600" class="down">
+                        <span style="font-size:11px">▼</span> -1.73%
                     </td>
-                    <td style="font-size:12px;color:#4a5568">+4.7%</td>
-                    <td style="font-size:12px;color:#4a5568;text-align:right">$137B</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">688256.SS</span>
-                            <span style="font-size:11px;color:#4a5568">寒武纪</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">AI芯片</span>
-                        </div>
-                    </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">1357.49</td>
-                    <td style="font-size:13px;font-weight:600" class="up">
-                        <span style="font-size:11px">▲</span> +0.37%
-                    </td>
-                    <td style="font-size:12px;color:#4a5568">+2.1%</td>
-                    <td style="font-size:12px;color:#4a5568;text-align:right">$572B</td>
+                    <td style="font-size:12px;color:#4a5568">+0.8%</td>
+                    <td style="font-size:12px;color:#4a5568;text-align:right">$135B</td>
                 </tr></tbody></table>
     </div>
     <div class="section">
         <div class="section-title"><div class="icon"></div>今日AI要闻 · 可溯源</div>
         
-            <div style="background:#f8f9fa;border-radius:12px;padding:18px;border:1px solid #e2e8f0;border-left:3px solid #667eea;margin-bottom:14px">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
-                    <span style="background:rgba(102,126,234,0.1);color:#667eea;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:600">AI新闻</span>
-                    <span style="font-size:11px;color:#718096">The Times of India</span>
-                </div>
-                <a href="https://economictimes.indiatimes.com/news/new-updates/atacamas-pristine-skies-face-light-pollution-risks-despite-cancellation-of-nearby-energy-project/articleshow/130526506.cms" target="_blank" style="font-size:15px;font-weight:600;color:#1a202c;text-decoration:none;display:block;margin-bottom:6px;line-height:1.4">Atacama’s pristine skies face light pollution risks despite cancellation of nearby energy project</a>
-                <div style="font-size:13px;color:#4a5568;line-height:1.6;margin-bottom:10px">Chile's Atacama Desert, a prime spot for stargazing, faces ongoing threats to its clear night skies. A proposed energy project near a major observatory was cancelled, but weak regulations could allow similar developments. Scientists warn that light pollution …</div>
-                <a href="https://economictimes.indiatimes.com/news/new-updates/atacamas-pristine-skies-face-light-pollution-risks-despite-cancellation-of-nearby-energy-project/articleshow/130526506.cms" target="_blank" style="font-size:11px;color:#667eea;text-decoration:none;display:inline-flex;align-items:center;gap:4px">阅读原文 ↗</a>
+            <div class="news-card">
+                <div class="news-tag">AI新闻</div>
+                <div class="news-source">Digitimes</div>
+                <a href="https://www.digitimes.com/news/a20260427PD214/tsmc-3nm-earnings-samsung-capacity.html" target="_blank" class="news-title">DIGITIMES Insight: Will TSMC's 3nm expansion put Samsung's 2nm bid on the back foot?</a>
+                <div class="news-summary">As the AI buildout accelerates and chipmakers race to secure advanced process capacity, TSMC finds itself in an increasingly commanding position.</div>
+                <a href="https://www.digitimes.com/news/a20260427PD214/tsmc-3nm-earnings-samsung-capacity.html" target="_blank" class="news-link">阅读原文 ↗</a>
             </div>
-            <div style="background:#f8f9fa;border-radius:12px;padding:18px;border:1px solid #e2e8f0;border-left:3px solid #667eea;margin-bottom:14px">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
-                    <span style="background:rgba(102,126,234,0.1);color:#667eea;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:600">AI新闻</span>
-                    <span style="font-size:11px;color:#718096">The Times of India</span>
-                </div>
-                <a href="https://economictimes.indiatimes.com/news/india/soon-gandhi-vajpayee-to-come-alive-in-ai-avatar-at-pm-museum-in-delhi/articleshow/130526570.cms" target="_blank" style="font-size:15px;font-weight:600;color:#1a202c;text-decoration:none;display:block;margin-bottom:6px;line-height:1.4">Soon Gandhi, Vajpayee to come alive in AI avatar at PM Museum in Delhi</a>
-                <div style="font-size:13px;color:#4a5568;line-height:1.6;margin-bottom:10px">Visitors to Delhi's Pradhanmantri Sangrahalaya will soon interact with AI avatars of Mahatma Gandhi and Atal Bihari Vajpayee. This initiative follows successful AI exhibits of Sardar Patel and A P J Abdul Kalam. The museum is integrating technology to improve…</div>
-                <a href="https://economictimes.indiatimes.com/news/india/soon-gandhi-vajpayee-to-come-alive-in-ai-avatar-at-pm-museum-in-delhi/articleshow/130526570.cms" target="_blank" style="font-size:11px;color:#667eea;text-decoration:none;display:inline-flex;align-items:center;gap:4px">阅读原文 ↗</a>
+            <div class="news-card">
+                <div class="news-tag">AI新闻</div>
+                <div class="news-source">Pypi.org</div>
+                <a href="https://pypi.org/project/feishu-bridge/2026.4.27.1/" target="_blank" class="news-title">feishu-bridge 2026.4.27.1</a>
+                <div class="news-summary">Feishu ↔ Claude Code / Codex bridge — remote AI agent control + 80+ Feishu API commands</div>
+                <a href="https://pypi.org/project/feishu-bridge/2026.4.27.1/" target="_blank" class="news-link">阅读原文 ↗</a>
             </div>
-            <div style="background:#f8f9fa;border-radius:12px;padding:18px;border:1px solid #e2e8f0;border-left:3px solid #667eea;margin-bottom:14px">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
-                    <span style="background:rgba(102,126,234,0.1);color:#667eea;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:600">AI新闻</span>
-                    <span style="font-size:11px;color:#718096">The Straits Times</span>
-                </div>
-                <a href="https://www.straitstimes.com/business/companies-markets/mall-mania-paragon-i12-katong-change-hands-white-sands-up-for-grabs" target="_blank" style="font-size:15px;font-weight:600;color:#1a202c;text-decoration:none;display:block;margin-bottom:6px;line-height:1.4">Mall mania: Paragon, i12 Katong change hands, White Sands up for grabs</a>
-                <div style="font-size:13px;color:#4a5568;line-height:1.6;margin-bottom:10px">Shareholders raised questions over $24 million in fees paid to directors of Sheng Siong in 2025, ahead of its AGM. Read more at straitstimes.com. Read more at straitstimes.com.</div>
-                <a href="https://www.straitstimes.com/business/companies-markets/mall-mania-paragon-i12-katong-change-hands-white-sands-up-for-grabs" target="_blank" style="font-size:11px;color:#667eea;text-decoration:none;display:inline-flex;align-items:center;gap:4px">阅读原文 ↗</a>
+            <div class="news-card">
+                <div class="news-tag">AI新闻</div>
+                <div class="news-source">Pypi.org</div>
+                <a href="https://pypi.org/project/mcp-printable/0.1.1/" target="_blank" class="news-title">mcp-printable 0.1.1</a>
+                <div class="news-summary">MCP server for AI-driven 3D modeling and print validation (FDM-focused). Agent-agnostic; works with any MCP client (Claude Code, Goose, Cursor, Codex, ...).</div>
+                <a href="https://pypi.org/project/mcp-printable/0.1.1/" target="_blank" class="news-link">阅读原文 ↗</a>
             </div>
-            <div style="background:#f8f9fa;border-radius:12px;padding:18px;border:1px solid #e2e8f0;border-left:3px solid #667eea;margin-bottom:14px">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
-                    <span style="background:rgba(102,126,234,0.1);color:#667eea;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:600">AI新闻</span>
-                    <span style="font-size:11px;color:#718096">Lawyersgunsmoneyblog.com</span>
-                </div>
-                <a href="https://www.lawyersgunsmoneyblog.com/2026/04/the-suckers-ball" target="_blank" style="font-size:15px;font-weight:600;color:#1a202c;text-decoration:none;display:block;margin-bottom:6px;line-height:1.4">The Sucker’s Ball</a>
-                <div style="font-size:13px;color:#4a5568;line-height:1.6;margin-bottom:10px">The other one, I mean: President Trump feted the biggest holders of his namesake memecoin on Saturday, cheering on a crypto market still fighting through a monthslong slump. In a wide-ranging address from his Mar-a-Lago resort, Trump touched on everything fro…</div>
-                <a href="https://www.lawyersgunsmoneyblog.com/2026/04/the-suckers-ball" target="_blank" style="font-size:11px;color:#667eea;text-decoration:none;display:inline-flex;align-items:center;gap:4px">阅读原文 ↗</a>
+            <div class="news-card">
+                <div class="news-tag">AI新闻</div>
+                <div class="news-source">Pypi.org</div>
+                <a href="https://pypi.org/project/prism-cc/0.3.0/" target="_blank" class="news-title">prism-cc 0.3.0</a>
+                <div class="news-summary">Session intelligence for Claude Code — find why your sessions fail and fix them</div>
+                <a href="https://pypi.org/project/prism-cc/0.3.0/" target="_blank" class="news-link">阅读原文 ↗</a>
             </div>
-            <div style="background:#f8f9fa;border-radius:12px;padding:18px;border:1px solid #e2e8f0;border-left:3px solid #667eea;margin-bottom:14px">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
-                    <span style="background:rgba(102,126,234,0.1);color:#667eea;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:600">AI新闻</span>
-                    <span style="font-size:11px;color:#718096">Onefootball.com</span>
-                </div>
-                <a href="https://onefootball.com/en/news/chivas-draw-with-atas-after-a-controversial-finish-42769896" target="_blank" style="font-size:15px;font-weight:600;color:#1a202c;text-decoration:none;display:block;margin-bottom:6px;line-height:1.4">Chivas draw with Atas after a controversial finish</a>
-                <div style="font-size:13px;color:#4a5568;line-height:1.6;margin-bottom:10px">Chivas and Xolos split the points after an intense draw. El Rebaño looked to make home-field advantage count at Akron Stadium, but ran into a well-organized and sharp border side that managed to neut...</div>
-                <a href="https://onefootball.com/en/news/chivas-draw-with-atas-after-a-controversial-finish-42769896" target="_blank" style="font-size:11px;color:#667eea;text-decoration:none;display:inline-flex;align-items:center;gap:4px">阅读原文 ↗</a>
+            <div class="news-card">
+                <div class="news-tag">AI新闻</div>
+                <div class="news-source">Pypi.org</div>
+                <a href="https://pypi.org/project/gllm-guardrail-binary/0.0.7.post2/" target="_blank" class="news-title">gllm-guardrail-binary 0.0.7.post2</a>
+                <div class="news-summary">A library containing guardrail components for Gen AI applications.</div>
+                <a href="https://pypi.org/project/gllm-guardrail-binary/0.0.7.post2/" target="_blank" class="news-link">阅读原文 ↗</a>
             </div>
-            <div style="background:#f8f9fa;border-radius:12px;padding:18px;border:1px solid #e2e8f0;border-left:3px solid #667eea;margin-bottom:14px">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
-                    <span style="background:rgba(102,126,234,0.1);color:#667eea;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:600">AI新闻</span>
-                    <span style="font-size:11px;color:#718096">The Times of India</span>
-                </div>
-                <a href="https://economictimes.indiatimes.com/news/india/dating-in-the-time-of-ai-are-you-swiping-right-on-a-guy-girl-chatgpt-or-gemini/articleshow/130525794.cms" target="_blank" style="font-size:15px;font-weight:600;color:#1a202c;text-decoration:none;display:block;margin-bottom:6px;line-height:1.4">Dating in the time of AI: Are you swiping right on a guy, girl, ChatGPT, or Gemini?</a>
-                <div style="font-size:13px;color:#4a5568;line-height:1.6;margin-bottom:10px">AI is reshaping online dating, with many users now relying on tools to craft bios, messages and even real-time conversations, often creating a mismatch between online charm and real-life personality. Several daters report being misled by partners who appeared…</div>
-                <a href="https://economictimes.indiatimes.com/news/india/dating-in-the-time-of-ai-are-you-swiping-right-on-a-guy-girl-chatgpt-or-gemini/articleshow/130525794.cms" target="_blank" style="font-size:11px;color:#667eea;text-decoration:none;display:inline-flex;align-items:center;gap:4px">阅读原文 ↗</a>
+            <div class="news-card">
+                <div class="news-tag">AI新闻</div>
+                <div class="news-source">Pypi.org</div>
+                <a href="https://pypi.org/project/box-agent/0.8.20/" target="_blank" class="news-title">box-agent 0.8.20</a>
+                <div class="news-summary">AI agent framework with Jupyter sandbox, data analysis, MCP tools, ACP protocol, multi-provider LLM, and standalone runtime packaging</div>
+                <a href="https://pypi.org/project/box-agent/0.8.20/" target="_blank" class="news-link">阅读原文 ↗</a>
             </div>
-            <div style="background:#f8f9fa;border-radius:12px;padding:18px;border:1px solid #e2e8f0;border-left:3px solid #667eea;margin-bottom:14px">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
-                    <span style="background:rgba(102,126,234,0.1);color:#667eea;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:600">AI新闻</span>
-                    <span style="font-size:11px;color:#718096">The Irish Times</span>
-                </div>
-                <a href="https://www.irishtimes.com/culture/books/2026/04/26/ben-lerner-i-want-us-to-think-of-the-book-as-another-hand-held-device/" target="_blank" style="font-size:15px;font-weight:600;color:#1a202c;text-decoration:none;display:block;margin-bottom:6px;line-height:1.4">Ben Lerner: ‘I want us to think of the book as another hand-held device’</a>
-                <div style="font-size:13px;color:#4a5568;line-height:1.6;margin-bottom:10px">Fiction such as Ben Lerner's keeps us connected to reality in ways that even functioning smartphones cannot</div>
-                <a href="https://www.irishtimes.com/culture/books/2026/04/26/ben-lerner-i-want-us-to-think-of-the-book-as-another-hand-held-device/" target="_blank" style="font-size:11px;color:#667eea;text-decoration:none;display:inline-flex;align-items:center;gap:4px">阅读原文 ↗</a>
+            <div class="news-card">
+                <div class="news-tag">AI新闻</div>
+                <div class="news-source">Pypi.org</div>
+                <a href="https://pypi.org/project/claude-statusbar/2.9.9/" target="_blank" class="news-title">claude-statusbar 2.9.9</a>
+                <div class="news-summary">Lightweight status bar monitor for Claude AI token usage</div>
+                <a href="https://pypi.org/project/claude-statusbar/2.9.9/" target="_blank" class="news-link">阅读原文 ↗</a>
             </div>
-            <div style="background:#f8f9fa;border-radius:12px;padding:18px;border:1px solid #e2e8f0;border-left:3px solid #667eea;margin-bottom:14px">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
-                    <span style="background:rgba(102,126,234,0.1);color:#667eea;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:600">AI新闻</span>
-                    <span style="font-size:11px;color:#718096">Oxfordproductdesign.com</span>
-                </div>
-                <a href="https://oxfordproductdesign.com/blog/events/health-ai-tech-show" target="_blank" style="font-size:15px;font-weight:600;color:#1a202c;text-decoration:none;display:block;margin-bottom:6px;line-height:1.4">Health AI Tech Show 2026 | AI & MedTech | OPD | OPD</a>
-                <div style="font-size:13px;color:#4a5568;line-height:1.6;margin-bottom:10px">We’re attending the Health AI Tech Show 2026, an event focused on the application of artificial intelligence across healthcare, MedTech, and clinical innovation.
-
-Our Head of Medical, Simon Collings, will be there representing OPD.</div>
-                <a href="https://oxfordproductdesign.com/blog/events/health-ai-tech-show" target="_blank" style="font-size:11px;color:#667eea;text-decoration:none;display:inline-flex;align-items:center;gap:4px">阅读原文 ↗</a>
+            <div class="news-card">
+                <div class="news-tag">AI新闻</div>
+                <div class="news-source">Pypi.org</div>
+                <a href="https://pypi.org/project/kwark/1.13.1/" target="_blank" class="news-title">kwark 1.13.1</a>
+                <div class="news-summary">Tap into AI brilliance from a simple shell command</div>
+                <a href="https://pypi.org/project/kwark/1.13.1/" target="_blank" class="news-link">阅读原文 ↗</a>
             </div>
-            <div style="background:#f8f9fa;border-radius:12px;padding:18px;border:1px solid #e2e8f0;border-left:3px solid #667eea;margin-bottom:14px">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
-                    <span style="background:rgba(102,126,234,0.1);color:#667eea;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:600">AI新闻</span>
-                    <span style="font-size:11px;color:#718096">Ithome.com</span>
-                </div>
-                <a href="https://www.ithome.com/0/943/609.htm" target="_blank" style="font-size:15px;font-weight:600;color:#1a202c;text-decoration:none;display:block;margin-bottom:6px;line-height:1.4">南航国产大飞机 C919 广州往返合肥新航线开通</a>
-                <div style="font-size:13px;color:#4a5568;line-height:1.6;margin-bottom:10px">IT之家 4 月 26 日消息，据央视新闻报道，4 月 26 日上午，搭载 144 名旅客的南航“大美湾区号”CZ3813 航班，从广州白云国际机场起飞，随后平稳降落在合肥新桥国际机场，缓缓穿过象征民航最高礼仪的“水门”，标志着南航国产大飞机 C919 广州往返合肥新航线顺利开通运行，合肥也成为 C919 商业通航的第 23 座城市。目前，南航已拥有 10 架国产大飞机 C919。随着 C919 机队的不断壮大，南航已将 C919 机型集中投放在广州往返北京大兴、武汉、南京、宁波、西安、温州、合肥等主要航线，并在…</div>
-                <a href="https://www.ithome.com/0/943/609.htm" target="_blank" style="font-size:11px;color:#667eea;text-decoration:none;display:inline-flex;align-items:center;gap:4px">阅读原文 ↗</a>
+            <div class="news-card">
+                <div class="news-tag">AI新闻</div>
+                <div class="news-source">Android-apk.com</div>
+                <a href="https://android-apk.com/2026/04/google-4%e6%9c%88%e4%bb%bd-gemini-drop/" target="_blank" class="news-title">Google 4月份 Gemini Drop</a>
+                <div class="news-summary">Google 數天前在官方 Blog 分享了四月份的 Gemini Drop，這份更新將 Gemini 從單純的聊天機器人進一步轉化為深度整合的「個人 AI 合作夥伴」。以下是本次更新的核心亮點： 1 ... [閱讀全文]</div>
+                <a href="https://android-apk.com/2026/04/google-4%e6%9c%88%e4%bb%bd-gemini-drop/" target="_blank" class="news-link">阅读原文 ↗</a>
             </div>
-            <div style="background:#f8f9fa;border-radius:12px;padding:18px;border:1px solid #e2e8f0;border-left:3px solid #667eea;margin-bottom:14px">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
-                    <span style="background:rgba(102,126,234,0.1);color:#667eea;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:600">AI新闻</span>
-                    <span style="font-size:11px;color:#718096">Yahoo Entertainment</span>
-                </div>
-                <a href="https://tw.news.yahoo.com/%E8%8A%B1%E8%93%AE-%E5%B1%B1%E6%B5%B7%E9%A8%8E%E9%81%87%E8%A8%98-%E5%96%AE%E8%BB%8A%E6%97%A5%E7%86%B1%E9%AC%A7%E7%99%BB%E5%A0%B4-%E8%A6%AA%E5%AD%90%E9%A8%8E%E8%A1%8C%E5%90%8C%E6%A8%82-%E8%A3%9C%E7%B5%A6%E7%AB%99%E7%AB%AF%E5%87%BA%E8%84%86%E7%9A%AE%E8%B1%AC%E6%8E%80%E6%9C%80%E9%A6%99%E9%AB%94%E9%A9%97-051811303.html" target="_blank" style="font-size:15px;font-weight:600;color:#1a202c;text-decoration:none;display:block;margin-bottom:6px;line-height:1.4">花蓮「山海騎遇記」單車日熱鬧登場！親子騎行同樂 補給站端出脆皮豬掀最香體驗</a>
-                <div style="font-size:13px;color:#4a5568;line-height:1.6;margin-bottom:10px">【記者 周澄予／花蓮 報導】全台「最香」的單車派對在花蓮熱鬧登場！由花蓮縣政府主辦的「山海騎遇記」自行車日，昨</div>
-                <a href="https://tw.news.yahoo.com/%E8%8A%B1%E8%93%AE-%E5%B1%B1%E6%B5%B7%E9%A8%8E%E9%81%87%E8%A8%98-%E5%96%AE%E8%BB%8A%E6%97%A5%E7%86%B1%E9%AC%A7%E7%99%BB%E5%A0%B4-%E8%A6%AA%E5%AD%90%E9%A8%8E%E8%A1%8C%E5%90%8C%E6%A8%82-%E8%A3%9C%E7%B5%A6%E7%AB%99%E7%AB%AF%E5%87%BA%E8%84%86%E7%9A%AE%E8%B1%AC%E6%8E%80%E6%9C%80%E9%A6%99%E9%AB%94%E9%A9%97-051811303.html" target="_blank" style="font-size:11px;color:#667eea;text-decoration:none;display:inline-flex;align-items:center;gap:4px">阅读原文 ↗</a>
+            <div class="news-card">
+                <div class="news-tag">AI新闻</div>
+                <div class="news-source">Techbang.com</div>
+                <a href="https://www.techbang.com/posts/129024-japan-cpu-prices-surge-amd-intel" target="_blank" class="news-title">日本裝機玩家心碎！AMD 與 Intel CPU 價格全線飆漲，Ryzen 7 9700X 漲幅逼近 60%</a>
+                <div class="news-summary">全球 DIY 硬體市場正因 AI 產能擠佔面臨前所未有的 CPU 漲價潮。這波 CPU 漲價潮不僅推高組裝成本，更因 AI 產能擠佔嚴重衝擊 DIY 硬體市場生態。全球 DIY 硬體市場正迎來一場前所未有的「價格海嘯」，日本市場數據揭示了 AI 產能擠佔引發的連鎖反應。
+長期以來，DIY 玩家習慣了摩爾定律帶來的性能紅利，但隨著全球通膨與半導體成本上揚，維持低價已成為不可能。根據 PC Watch 最新報導，日本 DIY 市場正經歷慘烈的漲價，主流型號如 Ryzen 7 9700X 售價已飆升至 59,800 日…</div>
+                <a href="https://www.techbang.com/posts/129024-japan-cpu-prices-surge-amd-intel" target="_blank" class="news-link">阅读原文 ↗</a>
             </div>
-            <div style="background:#f8f9fa;border-radius:12px;padding:18px;border:1px solid #e2e8f0;border-left:3px solid #667eea;margin-bottom:14px">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
-                    <span style="background:rgba(102,126,234,0.1);color:#667eea;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:600">AI新闻</span>
-                    <span style="font-size:11px;color:#718096">量子位</span>
-                </div>
-                <a href="https://www.qbitai.com/2026/04/407832.html" target="_blank" style="font-size:15px;font-weight:600;color:#1a202c;text-decoration:none;display:block;margin-bottom:6px;line-height:1.4">未来 从此领程：广汽领程2026北京车展全球发布会圆满举行</a>
-                <div style="font-size:13px;color:#4a5568;line-height:1.6;margin-bottom:10px">两大商用车品牌启幕</div>
-                <a href="https://www.qbitai.com/2026/04/407832.html" target="_blank" style="font-size:11px;color:#667eea;text-decoration:none;display:inline-flex;align-items:center;gap:4px">阅读原文 ↗</a>
+            <div class="news-card">
+                <div class="news-tag">AI新闻</div>
+                <div class="news-source">量子位</div>
+                <a href="https://www.qbitai.com/2026/04/408649.html" target="_blank" class="news-title">打工人五一自救指南：把活全甩给AI，准备免打扰出门</a>
+                <div class="news-summary">假期不想被@工作了</div>
+                <a href="https://www.qbitai.com/2026/04/408649.html" target="_blank" class="news-link">阅读原文 ↗</a>
             </div>
-            <div style="background:#f8f9fa;border-radius:12px;padding:18px;border:1px solid #e2e8f0;border-left:3px solid #667eea;margin-bottom:14px">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
-                    <span style="background:rgba(102,126,234,0.1);color:#667eea;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:600">模型</span>
-                    <span style="font-size:11px;color:#718096">量子位</span>
-                </div>
-                <a href="https://www.qbitai.com/2026/04/407850.html" target="_blank" style="font-size:15px;font-weight:600;color:#1a202c;text-decoration:none;display:block;margin-bottom:6px;line-height:1.4">DeepSeek V4永久降价！缓存命中再打1折，实测编程成本骤降83%</a>
-                <div style="font-size:13px;color:#4a5568;line-height:1.6;margin-bottom:10px">5块钱干完30块的活</div>
-                <a href="https://www.qbitai.com/2026/04/407850.html" target="_blank" style="font-size:11px;color:#667eea;text-decoration:none;display:inline-flex;align-items:center;gap:4px">阅读原文 ↗</a>
+            <div class="news-card">
+                <div class="news-tag">AI新闻</div>
+                <div class="news-source">量子位</div>
+                <a href="https://www.qbitai.com/2026/04/408578.html" target="_blank" class="news-title">量子位专访楼天城：AI是匹脱缰野马，Harness是这个时代最关键的能力</a>
+                <div class="news-summary">未来人该怎么和AI共存</div>
+                <a href="https://www.qbitai.com/2026/04/408578.html" target="_blank" class="news-link">阅读原文 ↗</a>
             </div>
     </div>
 
@@ -484,7 +636,7 @@ Our Head of Medical, Simon Collings, will be there representing OPD.</div>
         <div class="section-title"><div class="icon"></div>市场总结</div>
         <div class="summary-box">
             <p>本报告由 GitHub Actions 自动生成，覆盖美股、港股、A股共 <strong style="color:#16a34a">19</strong> 只AI核心标的。数据来源为 Yahoo Finance，新闻来源为 RSS 聚合与 NewsAPI。</p>
-            <p style="margin-top:10px">今日最强标的为 <strong style="color:#1a202c">AMD (AMD)</strong>，涨幅 <strong style="color:#16a34a">13.91%</strong>。</p>
+            <p style="margin-top:10px">今日最强标的为 <strong style="color:#1a202c">NVIDIA (NVDA)</strong>，涨幅 <strong style="color:#16a34a">4.00%</strong>。</p>
         </div>
     </div>
 

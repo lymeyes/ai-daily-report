@@ -33,6 +33,29 @@ STOCKS = {
     "603019.SS": {"name": "中科曙光", "market": "CN", "sector": "算力"},
 }
 
+# 新闻过滤：黑名单关键词（标题或摘要出现这些词则过滤）
+NEWS_BLACKLIST = [
+    # 体育/足球
+    "football", "soccer", "match", "game", "team", "player", "league", "fifa",
+    "足球", "赛事", "比赛", "球队", "球员",
+    # 娱乐/漫画
+    "comic", "manga", "anime", "movie review", "film review",
+    "漫画", "动画", "影视", "电影评论",
+    # 政治（非科技类）
+    "election", "vote", "campaign", "president",
+    # 其他不相关
+    "recipe", "cooking", "travel guide",
+]
+
+def is_relevant_news(title, summary=""):
+    """检查新闻是否与 AI/科技相关（过滤黑名单）"""
+    text = (title + " " + summary).lower()
+    for kw in NEWS_BLACKLIST:
+        if kw in text:
+            return False
+    return True
+
+
 # RSS 新闻源（无需 API Key）
 RSS_FEEDS = [
     # 中文媒体
@@ -141,9 +164,14 @@ def get_news_from_api():
         if resp.status_code == 200:
             articles = resp.json().get("articles", [])
             for a in articles:
+                title = a["title"]
+                summary = a.get("description", "") or ""
+                # 过滤不相关新闻
+                if not is_relevant_news(title, summary):
+                    continue
                 all_articles.append({
-                    "title": a["title"],
-                    "summary": a.get("description", "") or "",
+                    "title": title,
+                    "summary": summary,
                     "url": a["url"],
                     "source": a["source"]["name"],
                     "tag": "AI新闻",
@@ -163,9 +191,13 @@ def get_news_from_api():
         if resp.status_code == 200:
             articles = resp.json().get("articles", [])
             for a in articles:
+                title = a["title"]
+                summary = a.get("description", "") or ""
+                if not is_relevant_news(title, summary):
+                    continue
                 all_articles.append({
-                    "title": a["title"],
-                    "summary": a.get("description", "") or "",
+                    "title": title,
+                    "summary": summary,
                     "url": a["url"],
                     "source": a["source"]["name"],
                     "tag": "AI新闻",
@@ -182,9 +214,12 @@ def get_news_from_rss():
     for source_name, feed_url in RSS_FEEDS:
         try:
             feed = feedparser.parse(feed_url)
-            for entry in feed.entries[:2]:  # 每个源取2条
+            for entry in feed.entries[:3]:  # 每个源取3条候选，过滤后取2条
                 title = entry.get("title", "")
                 summary = entry.get("summary", "") or entry.get("description", "")
+                # 过滤不相关新闻
+                if not is_relevant_news(title, summary):
+                    continue
                 # 清理HTML标签
                 summary = summary.replace("<", "&lt;").replace(">", "&gt;")
                 if len(summary) > 300:
@@ -283,12 +318,12 @@ def generate_html(stocks, news):
                 <tr>
                     <td>
                         <div style="display:flex;flex-direction:column;gap:2px">
-                            <span style="font-size:14px;font-weight:700;color:#1a202c">{s["ticker"]}</span>
-                            <span style="font-size:11px;color:#4a5568">{s["name"]}</span>
-                            <span style="font-size:10px;color:#667eea;background:rgba(102,126,234,0.1);padding:1px 6px;border-radius:4px;width:fit-content">{s["sector"]}</span>
+                            <span style="font-size:15px;font-weight:700;color:#e2e8f0">{s["ticker"]}</span>
+                            <span style="font-size:12px;color:#a8b4ff">{s["name"]}</span>
+                            <span style="font-size:11px;color:#667eea;background:rgba(102,126,234,0.15);padding:2px 8px;border-radius:6px;width:fit-content">{s["sector"]}</span>
                         </div>
                     </td>
-                    <td style="font-size:15px;font-weight:700;color:#1a202c">{s["price"]:.2f}</td>
+                    <td style="font-size:16px;font-weight:700;color:#e2e8f0">{s["price"]:.2f}</td>
                     <td style="font-size:13px;font-weight:600" class="{cls}">
                         <span style="font-size:11px">{arrow}</span> {sign}{s["change_pct"]:.2f}%
                     </td>
@@ -301,14 +336,12 @@ def generate_html(stocks, news):
         items = ""
         for n in news_list:
             items += f"""
-            <div style="background:#f8f9fa;border-radius:12px;padding:18px;border:1px solid #e2e8f0;border-left:3px solid #667eea;margin-bottom:14px">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
-                    <span style="background:rgba(102,126,234,0.1);color:#667eea;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:600">{n["tag"]}</span>
-                    <span style="font-size:11px;color:#718096">{n["source"]}</span>
-                </div>
-                <a href="{n["url"]}" target="_blank" style="font-size:15px;font-weight:600;color:#1a202c;text-decoration:none;display:block;margin-bottom:6px;line-height:1.4">{n["title"]}</a>
-                <div style="font-size:13px;color:#4a5568;line-height:1.6;margin-bottom:10px">{n["summary"]}</div>
-                <a href="{n["url"]}" target="_blank" style="font-size:11px;color:#667eea;text-decoration:none;display:inline-flex;align-items:center;gap:4px">阅读原文 ↗</a>
+            <div class="news-card">
+                <div class="news-tag">{n["tag"]}</div>
+                <div class="news-source">{n["source"]}</div>
+                <a href="{n["url"]}" target="_blank" class="news-title">{n["title"]}</a>
+                <div class="news-summary">{n["summary"]}</div>
+                <a href="{n["url"]}" target="_blank" class="news-link">阅读原文 ↗</a>
             </div>"""
         return items
     
@@ -320,39 +353,216 @@ def generate_html(stocks, news):
 <title>AI全球早报 - {date_str}</title>
 <style>
 *{{margin:0;padding:0;box-sizing:border-box}}
-body{{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#f7fafc;color:#2d3748;line-height:1.6}}
-.container{{max-width:960px;margin:0 auto;padding:20px}}
-.header{{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:16px;padding:32px;margin-bottom:24px;box-shadow:0 10px 25px rgba(102,126,234,0.15)}}
-.header::before{{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,0.1) 0%,transparent 70%);border-radius:50%}}
-.header-badge{{display:inline-block;background:rgba(255,255,255,0.2);color:#fff;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;backdrop-filter:blur(10px)}}
-.header h1{{font-size:30px;font-weight:700;color:#fff;margin-bottom:8px;text-shadow:0 2px 4px rgba(0,0,0,0.1)}}
-.header-date{{color:rgba(255,255,255,0.8);font-size:14px}}
-.header-date span{{color:#fff;font-weight:500}}
-.section{{background:#fff;border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,0.08)}}
-.section-title{{font-size:17px;font-weight:600;color:#2d3748;margin-bottom:18px;display:flex;align-items:center;gap:10px}}
-.section-title .icon{{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);box-shadow:0 0 8px rgba(102,126,234,0.3)}}
-.section-title .market-tag{{font-size:11px;font-weight:500;padding:2px 8px;border-radius:6px;background:#f7fafc;color:#718096;margin-left:auto;border:1px solid #e2e8f0}}
-.stock-table{{width:100%;border-collapse:collapse;font-size:13px}}
-.stock-table th{{text-align:left;padding:10px 12px;color:#718096;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;border-bottom:2px solid #e2e8f0}}
-.stock-table td{{padding:14px 12px;border-bottom:1px solid #f0f4f8;vertical-align:middle}}
-.stock-table tr:hover td{{background:#f7fafc}}
+body{{
+  font-family:'SF Pro Display','PingFang SC','Hiragino Sans GB','Microsoft YaHei',-apple-system,sans-serif;
+  background: linear-gradient(135deg,#0f0f23 0%,#1a1a2e 50%,#16213e 100%);
+  color:#e2e8f0;
+  line-height:1.6;
+  min-height:100vh;
+  font-size:15px;
+}}
+.container{{max-width:960px;margin:0 auto;padding:24px}}
+.header{{
+  background: linear-gradient(135deg,#667eea 0%,#764ba2 50%,#f093fb 100%);
+  border-radius:20px;
+  padding:40px 36px;
+  margin-bottom:28px;
+  box-shadow:0 20px 60px rgba(102,126,234,0.3);
+  position:relative;
+  overflow:hidden;
+}}
+.header::before{{
+  content:'';
+  position:absolute;
+  top:-60%;
+  right:-10%;
+  width:500px;
+  height:500px;
+  background:radial-gradient(circle,rgba(255,255,255,0.12) 0%,transparent 70%);
+  border-radius:50%;
+  animation: float 8s ease-in-out infinite;
+}}
+@keyframes float{{
+  0%,100%{{transform:translateY(0px)}}
+  50%{{transform:translateY(-20px)}}
+}}
+.header-badge{{
+  display:inline-block;
+  background:rgba(255,255,255,0.18);
+  color:#fff;
+  padding:6px 16px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  margin-bottom:14px;
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.15);
+}}
+.header h1{{
+  font-size:38px;
+  font-weight:800;
+  color:#fff;
+  margin-bottom:10px;
+  text-shadow:0 4px 12px rgba(0,0,0,0.2);
+  letter-spacing:-0.5px;
+}}
+.header-date{{color:rgba(255,255,255,0.85);font-size:15px;font-weight:500}}
+.header-date span{{color:#fff;font-weight:700}}
+.section{{
+  background:rgba(26,32,53,0.7);
+  backdrop-filter:blur(20px);
+  border-radius:18px;
+  padding:28px;
+  margin-bottom:22px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.3);
+  border:1px solid rgba(102,126,234,0.15);
+}}
+.section-title{{
+  font-size:18px;
+  font-weight:700;
+  color:#e2e8f0;
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}}
+.section-title .icon{{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#667eea,#f093fb);
+  box-shadow:0 0 12px rgba(102,126,234,0.5);
+  animation: pulse 2s ease-in-out infinite;
+}}
+@keyframes pulse{{
+  0%,100%{{box-shadow:0 0 12px rgba(102,126,234,0.5)}}
+  50%{{box-shadow:0 0 20px rgba(240,147,251,0.7)}}
+}}
+.section-title .market-tag{{
+  font-size:11px;
+  font-weight:600;
+  padding:4px 10px;
+  border-radius:8px;
+  background:rgba(102,126,234,0.15);
+  color:#a8b4ff;
+  margin-left:auto;
+  border:1px solid rgba(102,126,234,0.25);
+}}
+.stock-table{{width:100%;border-collapse:collapse;font-size:14px}}
+.stock-table th{{
+  text-align:left;
+  padding:12px 14px;
+  color:#a8b4ff;
+  font-weight:700;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  border-bottom:2px solid rgba(102,126,234,0.3);
+}}
+.stock-table td{{
+  padding:16px 14px;
+  border-bottom:1px solid rgba(102,126,234,0.1);
+  vertical-align:middle;
+  font-size:14px;
+}}
+.stock-table tr:hover td{{background:rgba(102,126,234,0.08)}}
 .stock-table tr:last-child td{{border-bottom:none}}
-.up{{color:#38a169}}
-.down{{color:#e53e3e}}
-.flat{{color:#718096}}
-.market-bar{{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}}
-.market-stat{{background:#fff;border-radius:12px;padding:14px 18px;box-shadow:0 1px 3px rgba(0,0,0,0.08);flex:1;min-width:140px}}
-.market-stat-label{{font-size:11px;color:#718096;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px}}
-.market-stat-value{{font-size:18px;font-weight:700;color:#2d3748}}
-.market-stat-change{{font-size:12px;font-weight:600;margin-top:2px}}
-.summary-box{{background:linear-gradient(135deg,#f7fafc 0%,#edf2f7 100%);border-radius:12px;padding:18px;border:1px solid #e2e8f0}}
-.summary-box p{{font-size:14px;color:#4a5568;line-height:1.7}}
-.footer{{text-align:center;padding:24px;color:#718096;font-size:12px}}
+.up{{color:#00ff88;font-weight:700;text-shadow:0 0 8px rgba(0,255,136,0.3)}}
+.down{{color:#ff4757;font-weight:700;text-shadow:0 0 8px rgba(255,71,87,0.3)}}
+.flat{{color:#a8b4ff}}
+.market-bar{{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:22px}}
+.market-stat{{
+  background:rgba(26,32,53,0.8);
+  backdrop-filter:blur(20px);
+  border-radius:14px;
+  padding:18px 22px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.3);
+  flex:1;
+  min-width:150px;
+  border:1px solid rgba(102,126,234,0.15);
+}}
+.market-stat-label{{
+  font-size:11px;
+  color:#a8b4ff;
+  margin-bottom:6px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-weight:600;
+}}
+.market-stat-value{{font-size:22px;font-weight:800;color:#e2e8f0}}
+.market-stat-change{{font-size:13px;font-weight:700;margin-top:4px}}
+.news-card{{
+  background:rgba(26,32,53,0.6);
+  backdrop-filter:blur(20px);
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:16px;
+  border:1px solid rgba(102,126,234,0.15);
+  border-left:4px solid #667eea;
+  transition: all 0.3s ease;
+}}
+.news-card:hover{{
+  border-left-color:#f093fb;
+  background:rgba(102,126,234,0.1);
+  transform:translateX(4px);
+  box-shadow:0 8px 32px rgba(102,126,234,0.2);
+}}
+.news-tag{{
+  display:inline-block;
+  background:rgba(102,126,234,0.2);
+  color:#a8b4ff;
+  padding:3px 12px;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.5px;
+  margin-bottom:10px;
+}}
+.news-source{{font-size:11px;color:#6b7bff;margin-bottom:8px;font-weight:600}}
+.news-title{{
+  font-size:16px;
+  font-weight:700;
+  color:#e2e8f0;
+  text-decoration:none;
+  display:block;
+  margin-bottom:8px;
+  line-height:1.5;
+}}
+.news-title:hover{{color:#a8b4ff}}
+.news-summary{{font-size:14px;color:#8892b0;line-height:1.7;margin-bottom:12px}}
+.news-link{{
+  font-size:12px;
+  color:#667eea;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-weight:600;
+  transition: all 0.2s;
+}}
+.news-link:hover{{color:#f093fb;gap:10px}}
+.summary-box{{
+  background:linear-gradient(135deg,rgba(102,126,234,0.1) 0%,rgba(240,147,251,0.1) 100%);
+  border-radius:14px;
+  padding:22px;
+  border:1px solid rgba(102,126,234,0.2);
+}}
+.summary-box p{{font-size:15px;color:#b8c1ec;line-height:1.8}}
+.footer{{
+  text-align:center;
+  padding:28px;
+  color:#6b7bff;
+  font-size:12px;
+  letter-spacing:1px;
+}}
 @media(max-width:600px){{
-.header h1{{font-size:22px}}
-.stock-table{{font-size:12px}}
-.stock-table th:nth-child(4),.stock-table td:nth-child(4){{display:none}}
-.market-bar{{flex-direction:column}}
+  .header h1{{font-size:26px}}
+  .stock-table{{font-size:13px}}
+  .stock-table th:nth-child(4),.stock-table td:nth-child(4){{display:none}}
+  .market-bar{{flex-direction:column}}
+  .news-title{{font-size:15px}}
 }}
 </style>
 </head>
