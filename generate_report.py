@@ -318,6 +318,12 @@ def generate_html(stocks, news):
             </div>"""
         return items
     
+    # 预计算 top_gainer 的安全显示值（避免 stocks 为空时崩溃）
+    tg_ticker = top_gainer["ticker"] if top_gainer else "-"
+    tg_name = top_gainer["name"] if top_gainer else "-"
+    tg_pct = f"{top_gainer['change_pct']:+.2f}%" if top_gainer else "-"
+    tg_class = "up" if top_gainer and top_gainer["change_pct"] >= 0 else "down"
+    
     html = f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -555,8 +561,8 @@ body{{
         </div>
         <div class="market-stat">
             <div class="market-stat-label">最大涨幅</div>
-            <div class="market-stat-value" style="color:#16a34a">{top_gainer["ticker"] if top_gainer else "-"}</div>
-            <div class="market-stat-change up">+{top_gainer["change_pct"]:.2f}%</div>
+            <div class="market-stat-value" style="color:#16a34a">{tg_ticker}</div>
+            <div class="market-stat-change {tg_class}">{tg_pct}</div>
         </div>
         <div class="market-stat">
             <div class="market-stat-label">生成时间</div>
@@ -599,7 +605,7 @@ body{{
         <div class="section-title"><div class="icon"></div>市场总结</div>
         <div class="summary-box">
             <p>本报告由 GitHub Actions 自动生成，覆盖美股、港股、A股共 <strong style="color:#16a34a">{len(stocks)}</strong> 只AI核心标的。数据来源为 Yahoo Finance，新闻来源为 RSS 聚合与 NewsAPI。</p>
-            <p style="margin-top:10px">今日最强标的为 <strong style="color:#1a202c">{top_gainer["name"] if top_gainer else "-"} ({top_gainer["ticker"] if top_gainer else "-"})</strong>，涨幅 <strong style="color:#16a34a">{top_gainer["change_pct"]:.2f}%</strong>。</p>
+            <p style="margin-top:10px">今日最强标的为 <strong style="color:#1a202c">{tg_name} ({tg_ticker})</strong>，涨幅 <strong style="color:#16a34a">{tg_pct}</strong>。</p>
         </div>
     </div>
 
